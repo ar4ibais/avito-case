@@ -16,9 +16,17 @@ import { useState } from "react";
 function App() {
 	const [locationId, setLocationId] = useState<undefined | string>(undefined);
 	const [categoryId, setCategoryId] = useState<undefined | string>(undefined);
-	const [price, setPrice] = useState<undefined | number>(undefined);
-	const [segment, setSegment] = useState<string | undefined>(undefined);
+	const [price, setPrice] = useState<undefined | string>(undefined);
+	const [segment, setSegment] = useState<undefined | string>(undefined);
+	const [added, setAdded] = useState(false);
+	const [selected, setSelected] = useState(false);
 
+	const showMessage = (func) => {
+		func(true);
+		setTimeout(() => {
+			func(false);
+		}, 3000);
+	};
 	const handleSubmit = () => {
 		if (locationId && categoryId && price) {
 			if (!segment) {
@@ -40,8 +48,13 @@ function App() {
 				};
 				console.log(JSON.stringify(obj));
 			}
+			setLocationId(undefined);
+			setCategoryId(undefined);
+			setPrice("");
+			setSegment("");
+			showMessage(setAdded);
 		} else {
-			console.log("Выберете необходимые параметры");
+			showMessage(setSelected);
 		}
 	};
 	return (
@@ -80,7 +93,7 @@ function App() {
 			<div className="flex justify-between gap-[20px] px-[20px] mb-[30px]">
 				<Input
 					value={price}
-					onChange={(e) => setPrice(+e.target.value)}
+					onChange={(e) => setPrice(e.target.value)}
 					label="Введите цену"
 					crossOrigin={undefined}
 				/>
@@ -102,6 +115,16 @@ function App() {
 					</Button>
 				</Tooltip>
 			</div>
+			{added && (
+				<h3 className="text-center text-green-500">
+					Успешно отправлены данные!
+				</h3>
+			)}
+			{selected && (
+				<h3 className="text-center text-red-500">
+					Выберете необходимые параметры!
+				</h3>
+			)}
 		</>
 	);
 }
