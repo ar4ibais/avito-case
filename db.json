@@ -1,0 +1,40 @@
+{
+	"baseline": [
+		{
+			"location_id": 123,
+			"microcategory_id": 456,
+			"price": 789
+		},
+		{
+			"location_id": 789,
+			"microcategory_id": 101,
+			"price": 112
+		}
+	],
+	"discounts": {
+		"100": [
+			{
+				"location_id": 234,
+				"microcategory_id": 567,
+				"price": 890
+			},
+			{
+				"location_id": 901,
+				"microcategory_id": 234,
+				"price": 567
+			}
+		],
+		"200": [
+			{
+				"location_id": 345,
+				"microcategory_id": 678,
+				"price": 901
+			},
+			{
+				"location_id": 123,
+				"microcategory_id": 890,
+				"price": 234
+			}
+		]
+	}
+}
