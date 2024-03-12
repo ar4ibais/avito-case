@@ -21,7 +21,7 @@ function App() {
 	const [added, setAdded] = useState(false);
 	const [selected, setSelected] = useState(false);
 
-	const showMessage = (func) => {
+	const showMessage = (func: (arg: boolean) => void) => {
 		func(true);
 		setTimeout(() => {
 			func(false);
@@ -93,7 +93,16 @@ function App() {
 			<div className="flex justify-between gap-[20px] px-[20px] mb-[30px]">
 				<Input
 					value={price}
-					onChange={(e) => setPrice(e.target.value)}
+					onChange={(e) => {
+						if (
+							typeof +e.target.value === "number" &&
+							+e.target.value > 0
+						) {
+							setPrice(e.target.value);
+						} else {
+							setPrice("");
+						}
+					}}
 					label="Введите цену"
 					crossOrigin={undefined}
 				/>
